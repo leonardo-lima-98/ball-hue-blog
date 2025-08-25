@@ -12,17 +12,29 @@ export const useTeamColors = () => {
   }, []);
 
   const changeFavoriteTeam = (teamId: string) => {
-    const team = teams.find(t => t.id === teamId);
-    if (team) {
-      setFavoriteTeam(teamId);
-      localStorage.setItem('favoriteTeam', teamId);
+    if (teamId === 'none') {
+      setFavoriteTeam(null);
+      localStorage.removeItem('favoriteTeam');
       
-      // Apply team colors to CSS variables
+      // Reset to default colors
       const root = document.documentElement;
-      root.style.setProperty('--team-primary', team.colors.primary);
-      root.style.setProperty('--team-secondary', team.colors.secondary);
-      root.style.setProperty('--primary', team.colors.primary);
-      root.style.setProperty('--accent', team.colors.primary);
+      root.style.setProperty('--team-primary', '142 76% 36%');
+      root.style.setProperty('--team-secondary', '210 40% 96%');
+      root.style.setProperty('--primary', '142 76% 36%');
+      root.style.setProperty('--accent', '142 76% 36%');
+    } else {
+      const team = teams.find(t => t.id === teamId);
+      if (team) {
+        setFavoriteTeam(teamId);
+        localStorage.setItem('favoriteTeam', teamId);
+        
+        // Apply team colors to CSS variables
+        const root = document.documentElement;
+        root.style.setProperty('--team-primary', team.colors.primary);
+        root.style.setProperty('--team-secondary', team.colors.secondary);
+        root.style.setProperty('--primary', team.colors.primary);
+        root.style.setProperty('--accent', team.colors.primary);
+      }
     }
   };
 

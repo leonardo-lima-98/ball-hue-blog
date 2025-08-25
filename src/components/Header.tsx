@@ -52,12 +52,12 @@ const Header = () => {
 
           {/* Team Selector */}
           <div className="hidden md:flex items-center gap-4">
-            <Select value={favoriteTeam || ''} onValueChange={changeFavoriteTeam}>
+            <Select value={favoriteTeam || 'none'} onValueChange={changeFavoriteTeam}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Escolha seu time" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Sem time</SelectItem>
+                <SelectItem value="none">Sem time</SelectItem>
                 {teams.map((team) => (
                   <SelectItem key={team.id} value={team.id}>
                     {team.shortName}
@@ -97,12 +97,12 @@ const Header = () => {
               
               {/* Mobile Team Selector */}
               <div className="pt-2">
-                <Select value={favoriteTeam || ''} onValueChange={changeFavoriteTeam}>
+                <Select value={favoriteTeam || 'none'} onValueChange={changeFavoriteTeam}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Escolha seu time" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Sem time</SelectItem>
+                    <SelectItem value="none">Sem time</SelectItem>
                     {teams.map((team) => (
                       <SelectItem key={team.id} value={team.id}>
                         {team.shortName}
