@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -6,8 +7,11 @@ import NewsCard from '@/components/NewsCard';
 import AdBanner from '@/components/AdBanner';
 import { mockNews } from '@/data/news';
 import { Filter } from 'lucide-react';
+import { teams } from '@/data/teams';
 
 const Noticias = () => {
+  const { teamId } = useParams();
+  const team = mockNews.find(t => t.id === teamId);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const categories = [

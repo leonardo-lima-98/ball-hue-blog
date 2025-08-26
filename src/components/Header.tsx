@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Menu, X, Trophy } from 'lucide-react';
+import { Menu, X, Trophy, Shield } from 'lucide-react';
 import { useTeamColors } from '@/hooks/useTeamColors';
 import { teams } from '@/data/teams';
+import TeamSelector from './headerComponents/TeamSelector';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,7 +52,7 @@ const Header = () => {
           </nav>
 
           {/* Team Selector */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* <div className="hidden md:flex items-center gap-4">
             <Select value={favoriteTeam || 'none'} onValueChange={changeFavoriteTeam}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Escolha seu time" />
@@ -65,7 +66,11 @@ const Header = () => {
                 ))}
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
+
+          <TeamSelector teams={teams} favoriteTeam={''} changeFavoriteTeam={function (teamId: string): void {
+            throw new Error('Function not implemented.');
+          } }/>
 
           {/* Mobile Menu Button */}
           <Button
